@@ -10,9 +10,7 @@ import time
 import board
 import busio
 import adafruit_bno055
-from numpy import linspace
-from numpy import pi
-from numpy import fft
+import numpy as np
 
 i2c = busio.I2C(board.SCL, board.SDA)
 sensor = adafruit_bno055.BNO055(i2c)
@@ -38,10 +36,12 @@ a=store
 l = len(a) # assume l even
 print(len(a)) 
 if l%2 != 0:
-	a.pop(-1)
+	lis=list(a)
+	del lis[-1]
+	a=tuple(lis)
 	
 
-w = 2*pi*.00001/l*tuple(linspace(-l/2,l/2-1))
-A = fftshift(fft(a))
+w = 2*np.pi*.00001/l*(np.linspace(-l/2,l/2-1))
+A=np.fft.fftshift(np.fft.fft((np.array(a))))
 D = A/-w**2
 
