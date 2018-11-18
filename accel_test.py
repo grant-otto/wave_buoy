@@ -3,6 +3,7 @@
 
 '''
 accelerometer test to verify that the sensor is connected and working.
+sample frequency should be 10us.
 reads the sensor and prints out the raw data it is collecting.
 '''
 
