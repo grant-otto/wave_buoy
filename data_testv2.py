@@ -40,7 +40,6 @@ T = l/Fs
 frq = k/T # two sides frequency range
 frq = frq[range(int(l/2))] # one side frequency range
 
-print(len(A))
 '''w = 2*np.pi*T/l*(np.linspace(-l/2,l/2-1, num=l)) #for integrating twice
 for i in range(len(w)): #getting a divide by zero error so checking which element is 0
     if w[i]==0:
@@ -66,12 +65,11 @@ def butter_lowpass_filter(data, cutoff, fs, order=5):
 order =6
 cutoff = 5 #cutoff frequency in hertz
 
-
-a = butter_lowpass_filter(a, cutoff, Fs, order)
+a = butter_lowpass_filter(a, cutoff, Fs, order)#apply lowpass filter
 
 
 A = np.fft.fftshift(np.fft.fft(a)/l) # fft computing and normalization
-A = np.fft.fft(a)/l # fft computing and normalization
+A = abs(np.fft.fft(a)/l) # fft computing and normalization
 Apos = A[range(int(l/2))]
 
 
@@ -96,7 +94,8 @@ d=np.fft.ifft(D)
 ax[3].plot(d[1000:5000])
 ax[3].set_ylabel('displacement')
 
-
-plt.figure()
-plt.plot(d[1000:5000])
-
+maxacc = max(Apos)
+frq=list(frq)
+Apos=list(Apos)
+period = 1/abs(frq[Apos.index(maxacc)])
+print('the wave period is: ', period,' seconds.')
