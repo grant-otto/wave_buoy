@@ -34,10 +34,7 @@ to get position data, simply double integrate the fft of acc. right now it isn't
 for i in range(len(a)): #clean data, bisecting values >50
     if abs(a[i])>50:
         a[i]=(a[i-1]+a[i-1])/2
-
-
 l = len(a) 
-print(len(a)) 
 if l%2 != 0: #make a even by deleting the last element if it isn't already
 	lis=list(a)
 	del lis[-1]
@@ -49,16 +46,12 @@ Fs = 50;  # sampling rate
 Ts = 1.0/Fs; # sampling interval
 Ts=15/len(a)
 Fs=1/Ts
-#t = np.linspace(0,int(len(a)),Ts) # time vector
-#print(len(t))
-
 k=np.arange(l)
 T = l/Fs
 frq = k/T # two sides frequency range
 frq = frq[range(int(l/2))] # one side frequency range
 
 #band pass filter
-
 def butter_lowpass(cutoff, fs, order=5):
     nyq = 0.5 * fs
     normal_cutoff = cutoff / nyq
@@ -72,15 +65,10 @@ def butter_lowpass_filter(data, cutoff, fs, order=5):
 
 order =6
 cutoff = 5 #cutoff frequency in hertz
-
 a = butter_lowpass_filter(a, cutoff, Fs, order)#apply lowpass filter
-
-
 A = np.fft.fftshift(np.fft.fft(a)/l) # fft computing and normalization
 A = abs(np.fft.fft(a)/l) # fft computing and normalization
 Apos = A[range(int(l/2))]
-
-
 maxacc = max(Apos)
 frq=list(frq)
 Apos=list(Apos)
