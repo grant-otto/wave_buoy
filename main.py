@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 '''
 Main script for open-source wave buoy
 Grant Otto, Hunter Tipton, Taylor Deemer
@@ -25,7 +27,12 @@ Create and Open CSV file with header
 #####
 
 date = datetime.strftime(datetime.now(),'%Y%m%d')
-filename = '/home/grant/Documents/2018_schoolyear/MAST632/wave_buoy/'+date+'wave_data.csv'
+
+#Filename: uncomment for the correct machine
+#filename = '/home/grant/Documents/2018_schoolyear/MAST632/wave_buoy/'+date+'wave_data.csv'
+filename = '/home/pi/wave_data/'+date+'wave_data.csv'
+
+
 open(filename,"w+")
 line=['Water Temperature (Degrees C)', 'Air Temperature (Degrees C)', 'Wave Period']
 with open(filename, "a") as csv_file:
@@ -42,8 +49,8 @@ read in accelerometer data
 a=[]
 tic = time.clock()
 toc= time.clock()+15
-while time.clock<toc:
-    elem=int('{}'.format(sensor.accelerometer[0])')
+while float(time.clock())<toc:
+    elem=float('{}'.format(sensor.accelerometer[0]))
     a.append(elem)
 
 ##############################
