@@ -1,12 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import os
-
+ 
 def sensor():
     for i in os.listdir('/sys/bus/w1/devices'):
         if i != 'w1_bus_master1':
             ds18b20 = i
-    return ds18b20
-
+    return ds18b20 
 def read(ds18b20):
     location = '/sys/bus/w1/devices/' + ds18b20 + '/w1_slave'
     tfile = open(location)
@@ -18,16 +17,16 @@ def read(ds18b20):
     celsius = temperature / 1000
     farenheit = (celsius * 1.8) + 32
     return celsius, farenheit
-
+ 
 def loop(ds18b20):
     while True:
         if read(ds18b20) != None:
             print "Current temperature : %0.3f C" % read(ds18b20)[0]
             print "Current temperature : %0.3f F" % read(ds18b20)[1]
-
+ 
 def kill():
     quit()
-
+ 
 if __name__ == '__main__':
     try:
         serialNum = sensor()

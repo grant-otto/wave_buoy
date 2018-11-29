@@ -15,7 +15,9 @@ import time
 import board
 import busio
 import adafruit_bno055
- 
+import os
+
+
 #initialize accelerometer
 i2c = busio.I2C(board.SCL, board.SDA)
 sensor = adafruit_bno055.BNO055(i2c)
@@ -34,13 +36,13 @@ filename = '/home/pi/wave_data/'+date+'wave_data.csv'
 
 
 open(filename,"w+")
-line=['Water Temperature (Degrees C)', 'Air Temperature (Degrees C)', 'Wave Period']
+line=['Time Stamp', 'Water Temperature (Degrees C)', 'Air Temperature (Degrees C)', 'Wave Period']
 with open(filename, "a") as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         writer.writerow(line)
 
 
-#Start of loop?
+While True:
 ##############################
 '''
 read in accelerometer data
@@ -113,6 +115,29 @@ Apos=list(Apos)
 period = 1/abs(frq[Apos.index(maxacc)])
 
 
+#################################
+'''
+Read in Thermometers
+'''
+#################################
+
+def read(ds18b20):
+    location = '/sys/bus/w1/devices/' + ds18b20 + '/w1_slave'
+    tfile = open(location)
+    text = tfile.read()
+    tfile.close()
+    secondline = text.split("\n")[1]
+    temperaturedata = secondline.split(" ")[9]
+    temperature = float(temperaturedata[2:])
+    celsius = temperature / 1000
+    return celsius
+ 
+
+#air temp
+airtemp=float("%.3f" % read("28-020691770b3c"))
+
+#water temp
+watertemp=float("%.3f" % read("28-020391774c3f"))
 
 #################################
 '''
@@ -121,9 +146,11 @@ Write to a csv
 #################################
 
 
-line=['water temp', 'air temp', period]
+line=[datetime.now(), watertemp, airtemp, period]
 with open(filename, "a") as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         writer.writerow(line)
 
 a=[]
+
+
