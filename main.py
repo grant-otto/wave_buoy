@@ -51,6 +51,7 @@ while True:
         a=[]
         tic = time.clock()
         toc= time.clock()+15
+        toctoc=time.clock()+60 #delay time until the next measurement
         while float(time.clock())<toc:
         elem=float('{}'.format(sensor.accelerometer[0]))
         a.append(elem)
@@ -152,3 +153,5 @@ while True:
                 writer.writerow(line)
 
         a=[]
+        while time.clock()<toctoc:
+                time.sleep()
