@@ -73,7 +73,7 @@ while True:
         '''
         ##############################
         line=[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
-        line[0]=datetime.utcnow()
+        line[0]=int(datetime.strftime(datetime.utcnow(),'%Y%m%d%H%M%S'))
         #line[1]=float('{}'.format(sensor.temperature()))
         for i in range(3):
                 line[i+2]=float('{}'.format(sensor.accelerometer[i]))
@@ -93,6 +93,7 @@ while True:
         with open(filename, "a") as csv_file:
                 writer = csv.writer(csv_file, delimiter=',')
                 writer.writerow(line)
+        print(line)
 
         time.sleep(0.5)
 

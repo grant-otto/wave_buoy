@@ -147,11 +147,12 @@ while True:
         #################################
 
 
-        line=[datetime.utcnow(), watertemp, airtemp, period]
+        line=[int(datetime.strftime(datetime.utcnow(),'%Y%m%d%H%M%S')), watertemp, airtemp, period]
         with open(filename, "a") as csv_file:
                 writer = csv.writer(csv_file, delimiter=',')
                 writer.writerow(line)
-
+        print(line)
         a=[]
-        while time.clock()<toctoc:
-                time.sleep(0.1)
+        sleeptime = toctoc-time.clock()
+        print(sleeptime)
+        time.sleep(sleeptime)
