@@ -53,8 +53,8 @@ while True:
         toc= time.clock()+15
         toctoc=time.clock()+60 #delay time until the next measurement
         while float(time.clock())<toc:
-        elem=float('{}'.format(sensor.accelerometer[0]))
-        a.append(elem)
+        	elem=float('{}'.format(sensor.accelerometer[0]))
+        	a.append(elem)
 
         ##############################
         '''

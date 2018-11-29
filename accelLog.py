@@ -32,7 +32,7 @@ date = datetime.strftime(datetime.utcnow(),'%Y%m%d%H%M%S')
 
 filename= '/home/pi/wave_data/'+date+'acc_data.csv'
 
-open(filenameacc,"w+")
+open(filename,"w+")
 line=['Time Stamp', 'Inside Temperature', 'Accelerometer X', 'Accelerometer Y', 'Accelerometer Z', 'Mag X', 'Mag Y', 'Mag Z', 'Gyro X', 'Gyro Y', 'Gyro Z', 'Euler X', 'Euler Y', 'Euler Z', 'Quaternion X', 'Quaternion Y', 'Quaternion Z', 'Lin Acc X', 'Lin Acc Y', 'Lin Acc Z', 'Gravity X', 'Gravity Y', 'Gravity Z']
 with open(filename, "a") as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
