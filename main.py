@@ -42,7 +42,7 @@ with open(filename, "a") as csv_file:
         writer.writerow(line)
 
 
-While True:
+while True:
         ##############################
         '''
         read in accelerometer data
