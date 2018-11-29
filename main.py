@@ -28,7 +28,7 @@ Create and Open CSV file with header
 '''
 #####
 
-date = datetime.strftime(datetime.now(),'%Y%m%d')
+date = datetime.strftime(datetime.utcnow(),'%Y%m%d%H%M%S')
 
 #Filename: uncomment for the correct machine
 #filename = '/home/grant/Documents/2018_schoolyear/MAST632/wave_buoy/'+date+'wave_data.csv'
@@ -146,7 +146,7 @@ while True:
         #################################
 
 
-        line=[datetime.now(), watertemp, airtemp, period]
+        line=[datetime.utcnow(), watertemp, airtemp, period]
         with open(filename, "a") as csv_file:
                 writer = csv.writer(csv_file, delimiter=',')
                 writer.writerow(line)

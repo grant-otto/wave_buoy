@@ -25,7 +25,7 @@ Create and Open CSV file with header
 '''
 #####
 
-date = datetime.strftime(datetime.now(),'%Y%m%d')
+date = datetime.strftime(datetime.utcnow(),'%Y%m%d%H%M%S')
 
 #Filename: uncomment for the correct machine
 #filename = '/home/grant/Documents/2018_schoolyear/MAST632/wave_buoy/'+date+'acc_data.csv'
@@ -72,7 +72,7 @@ while True:
         read in accelerometer data
         '''
         ##############################
-        line[0]=datetime.now()
+        line[0]=datetime.utcnow()
         line[1]=float('{}'.format(sensor.temperature[i]))
         for i in range(3):
                 line[i+2]=float('{}'.format(sensor.accelerometer[i]))
