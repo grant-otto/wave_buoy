@@ -154,5 +154,5 @@ while True:
         print(line)
         a=[]
         sleeptime = toctoc-time.clock()
-        print(sleeptime)
+        #print(sleeptime)
         time.sleep(sleeptime)
