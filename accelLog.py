@@ -122,7 +122,7 @@ while True:
         with open(filename, "a") as csv_file:
                 writer = csv.writer(csv_file, delimiter=',')
                 writer.writerow(line)
-        print(line)
+        #print(line)
 
         #time.sleep(0.25)
 
