@@ -39,7 +39,18 @@ Running Instructions:
 Currently, there is no support for wave height, only sea temp, air temp, and period (still quite buggy).
 However, there is a script that can log all accelerometer data directly every 1/2 second.
 
-It is best to run both to capture the full amount of data. They automatically run on boot. To stop them, good luck for now.
+As of right now, only one of the two scripts (main.py and accelLog.py) can be run at once due to their common use of the i2c port.
+to run one of them, add 
+	./main.py & 
+or 
+	./accelLog.py &
+to the bottom of your ~/.bashrc. This will make it run on boot in the background. To stop it,
+
+	ps
+	kill [PID]
+where the PID is the PID of the script you are running as displayed by the ps command.
+
+The log files are kept in ~/wave_data/ and timestamped at the start of the log with UTC time. All timestamps in all files are UTC.
 
 
 U of D Wave buoy notes:
