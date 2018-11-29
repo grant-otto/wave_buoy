@@ -68,8 +68,8 @@ while True:
 
 
         for i in range(len(a)): #clean data, bisecting values >50
-        if abs(a[i])>50:
-                a[i]=(a[i-1]+a[i-1])/2
+                if abs(a[i])>50:
+                        a[i]=(a[i-1]+a[i-1])/2
         l = len(a) 
         if l%2 != 0: #make a even by deleting the last element if it isn't already
                 lis=list(a)
@@ -89,15 +89,15 @@ while True:
 
         #band pass filter
         def butter_lowpass(cutoff, fs, order=5):
-        nyq = 0.5 * fs
-        normal_cutoff = cutoff / nyq
-        b, a = butter(order, normal_cutoff, btype='low', analog=False)
-        return b, a
+                nyq = 0.5 * fs
+                normal_cutoff = cutoff / nyq
+                b, a = butter(order, normal_cutoff, btype='low', analog=False)
+                return b, a
 
         def butter_lowpass_filter(data, cutoff, fs, order=5):
-        b, a = butter_lowpass(cutoff, fs, order=order)
-        y = lfilter(b, a, data)
-        return y
+                b, a = butter_lowpass(cutoff, fs, order=order)
+                y = lfilter(b, a, data)
+                return y
 
         order =6
         cutoff = 5 #cutoff frequency in hertz
@@ -123,16 +123,16 @@ while True:
         #################################
 
         def read(ds18b20):
-        location = '/sys/bus/w1/devices/' + ds18b20 + '/w1_slave'
-        tfile = open(location)
-        text = tfile.read()
-        tfile.close()
-        secondline = text.split("\n")[1]
-        temperaturedata = secondline.split(" ")[9]
-        temperature = float(temperaturedata[2:])
-        celsius = temperature / 1000
-        return celsius
-        
+                location = '/sys/bus/w1/devices/' + ds18b20 + '/w1_slave'
+                tfile = open(location)
+                text = tfile.read()
+                tfile.close()
+                secondline = text.split("\n")[1]
+                temperaturedata = secondline.split(" ")[9]
+                temperature = float(temperaturedata[2:])
+                celsius = temperature / 1000
+                return celsius
+
 
         #air temp
         airtemp=float("%.3f" % read("28-020691770b3c"))
