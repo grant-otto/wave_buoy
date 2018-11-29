@@ -72,8 +72,9 @@ while True:
         read in accelerometer data
         '''
         ##############################
+        line=[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]
         line[0]=datetime.utcnow()
-        line[1]=float('{}'.format(sensor.temperature[i]))
+        #line[1]=float('{}'.format(sensor.temperature()))
         for i in range(3):
                 line[i+2]=float('{}'.format(sensor.accelerometer[i]))
         for i in range(3):

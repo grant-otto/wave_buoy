@@ -154,4 +154,4 @@ while True:
 
         a=[]
         while time.clock()<toctoc:
-                time.sleep()
+                time.sleep(0.1)
