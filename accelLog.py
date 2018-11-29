@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 '''
-Main script for open-source wave buoy
+Accelerometer Log for open-source wave buoy
 Grant Otto, Hunter Tipton, Taylor Deemer
 University of Delaware
 '''
@@ -43,7 +43,7 @@ csv indices:
 0: time stamp
 1: outside air temp
 2: water temp
-3: inside temperature
+3: inside temperature, giving bad readings at the moment
 4: acc x
 5: acc y
 6: acc z
@@ -124,5 +124,5 @@ while True:
                 writer.writerow(line)
         print(line)
 
-        time.sleep(0.5)
+        #time.sleep(0.25)
 
