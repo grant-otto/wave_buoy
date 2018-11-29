@@ -1,7 +1,50 @@
-# wave_buoy
+Open Source Wave Buoy
+
+Created by Grant Otto, Hunter Tipton, and Taylor Deemer
+University of Delaware School of Marine Science and Policy
+
+
+Installation instructions for Raspberry Pi:
+
+open a terminal and enter:
+	git clone https://github.com/seaotto/wave_buoy.git
+
+Accelerometer (BN055):
+enable I2C and SPI using 
+	sudo raspi-config
+under Interfacing Options
+install circuit python:
+	sudo pip3 install adafruit-circuitpython-bno055
+
+Thermometers (DS18B20):
+The thermometers use the One Wire Protocol and can be put in parallel on the same pin.
+Use
+	sudo raspi-config
+and enable the One Wire Protocol under Interfacing Options.
+Next,
+	sudo nano boot/config.txt
+add a line at the bottom:
+	dtoverlay=w1-gpio,gpiopin=XXX
+where XXX is the number of the pin you plug your thermometers into. The default is pin 4.
+To check the thermometers, 
+	cd /sys/bus/w1/devices
+	ls
+for each thermometer you plug in, you should see a folder starting with 28-[...]
+	cd 28-[...]
+	cat w1_slave
+you should see in the bottom right a number in the 10's of thousands. Divide by 1000 and that is your temperature in *C. There is a parser in temptest.py for this.
+
+
+Running Instructions:
+Currently, there is no support for wave height, only sea temp, air temp, and period (still quite buggy).
+However, there is a script that can log all accelerometer data directly every 1/2 second.
+
+It is best to run both to capture the full amount of data. They automatically run on boot. To stop them, good luck for now.
+
+
+U of D Wave buoy notes:
+
 ip address in lewes: 128.4.232.121
 ip address in newark: 128.4.208.190
-
-
 temp sensors: 69 is air
 	      39 is water
