@@ -66,7 +66,7 @@ The log files are kept in ~/wave_data/ and timestamped at the start of the log w
 
 U of D Wave buoy notes:
 
-ip address in lewes: 128.4.232.121
+ip address in lewes: 128.4.232.122
 ip address in newark: 128.4.208.190
 temp sensors: 69 is air
 	      39 is water
