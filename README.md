@@ -22,6 +22,10 @@ Use
 
 	sudo raspi-config
 and enable the One Wire Protocol under Interfacing Options.
+For final One Wire configuration, use:
+
+	sudo modprobe w1-gpio
+	suod modprobe w1-therm
 Next,
 
 	sudo nano boot/config.txt
