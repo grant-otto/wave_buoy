@@ -17,6 +17,11 @@ import busio
 import adafruit_bno055
 import os
 
+#####
+''' input serial numbers for thermometers here:'''
+#####
+airserial = "28-021312c724aa"
+waterserial = "28-01131f8643bd"
 
 #initialize accelerometer
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -134,11 +139,12 @@ while True:
                 return celsius
 
 
-        #air temp
-        airtemp=float("%.3f" % read("28-020691770b3c"))
+         #air temp
+        airtemp=float("%.3f" % read(airserial))
 
         #water temp
-        watertemp=float("%.3f" % read("28-020391774c3f"))
+        watertemp=float("%.3f" % read(waterserial))
+
 
         #################################
         '''

@@ -15,6 +15,8 @@ def read(ds18b20):
     celsius = temperature / 1000
     return celsius
  
+
+
 while True:
-	print("air temperature:   %0.3f C" % read("28-020691770b3c"))
-	print("water temperature: %0.3f C" % read("28-020391774c3f"))
+	print("air temperature:   %0.3f C" % read("28-021312c724aa"))
+	print("water temperature: %0.3f C" % read("28-01131f8643bd"))
